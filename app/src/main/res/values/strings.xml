@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">project_of_note</string>
+    <string name="app_name">Note</string>
+    <string name="hello_world">Hello World!</string>
 </resources>
