@@ -2,104 +2,65 @@ package com.example.note;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.view.Menu;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.List;
+
+import com.example.note.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private DatabaseHelper dbHelper;
-    private EditText editTextNoteTitle, editTextNoteContent;
-    private Button buttonSave, buttonUpdate, buttonDelete;
-    private ListView listViewNotes;
-    private Note selectedNote;
+
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        dbHelper = new DatabaseHelper(this);
-        editTextNoteTitle = findViewById(R.id.editTextNoteTitle);
-        editTextNoteContent = findViewById(R.id.editTextNoteContent);
-        buttonSave = findViewById(R.id.buttonSave);
-        buttonUpdate = findViewById(R.id.buttonUpdate);
-        buttonDelete = findViewById(R.id.buttonDelete);
-        listViewNotes = findViewById(R.id.listViewNotes);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(binding.appBarMain.toolbar);
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                saveNote();
-                refreshNoteList();
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .setAnchorView(R.id.fab).show();
             }
         });
-
-        buttonUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedNote != null) {
-                    updateNote();
-                    refreshNoteList();
-                }
-            }
-        });
-
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedNote != null) {
-                    deleteNote();
-                    refreshNoteList();
-                }
-            }
-        });
-
-        listViewNotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedNote = (Note) parent.getItemAtPosition(position);
-                editTextNoteTitle.setText(selectedNote.getTitle());
-                editTextNoteContent.setText(selectedNote.getContent());
-            }
-        });
-
-        refreshNoteList();
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setOpenableLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    private void saveNote() {
-        String title = editTextNoteTitle.getText().toString();
-        String content = editTextNoteContent.getText().toString();
-        Note note = new Note(title, content);
-        dbHelper.addNote(note);
-        clearFields();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
-    private void updateNote() {
-        selectedNote.setTitle(editTextNoteTitle.getText().toString());
-        selectedNote.setContent(editTextNoteContent.getText().toString());
-        dbHelper.updateNote(selectedNote);
-        clearFields();
-        selectedNote = null;
-    }
-
-    private void deleteNote() {
-        dbHelper.deleteNote(selectedNote.getId());
-        clearFields();
-        selectedNote = null;
-    }
-
-    private void refreshNoteList() {
-        List<Note> noteList = dbHelper.getAllNotes();
-        ArrayAdapter<Note> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noteList);
-        listViewNotes.setAdapter(adapter);
-    }
-
-    private void clearFields() {
-        editTextNoteTitle.setText("");
-        editTextNoteContent.setText("");
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }
