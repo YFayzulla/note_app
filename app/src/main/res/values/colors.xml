@@ -2,22 +2,4 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#6200EE</color> <!-- Purple -->
-
-    <!-- Primary dark color -->
-    <color name="colorPrimaryDark">#3700B3</color> <!-- Darker Purple -->
-
-    <!-- Accent color -->
-    <color name="colorAccent">#03DAC5</color> <!-- Teal -->
-
-    <!-- Error color -->
-    <color name="colorError">#B00020</color> <!-- Red -->
-
-    <!-- Background color -->
-    <color name="background">#F9F9F9</color> <!-- Light Gray -->
-
-    <!-- Text colors -->
-    <color name="textColorPrimary">#212121</color> <!-- Dark Gray -->
-    <color name="textColorSecondary">#757575</color> <!-- Medium Gray -->
-    <color name="hintColor">#A0A0A0</color> <!-- Hint Color -->
 </resources>
