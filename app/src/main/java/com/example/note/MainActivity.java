@@ -10,6 +10,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private EditText editTextNoteTitle, editTextNoteContent;
