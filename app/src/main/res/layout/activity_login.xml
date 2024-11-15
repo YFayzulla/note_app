@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
     <!-- CardView for the border and centered form -->
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
+        app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Inner container for form elements -->
         <LinearLayout
@@ -29,37 +27,26 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-<!--            &lt;!&ndash; Username Input &ndash;&gt;-->
-<!--            <EditText-->
-<!--                android:id="@+id/usernameInput"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="Username"-->
-<!--                android:inputType="text"-->
-<!--                android:padding="12dp"-->
-<!--                android:background="@drawable/border"-->
-<!--                android:layout_marginBottom="16dp" />-->
-
             <!-- Password Input -->
             <EditText
                 android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/border"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:padding="12dp"
-                android:background="@drawable/border"
-                android:layout_marginBottom="24dp" />
+                android:padding="12dp" />
 
             <!-- Login Button -->
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
                 android:backgroundTint="@color/black"
-                android:textColor="@android:color/white"
-                android:padding="12dp" />
+                android:padding="12dp"
+                android:text="Login"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
