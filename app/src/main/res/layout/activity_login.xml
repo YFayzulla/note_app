@@ -28,6 +28,17 @@
             android:padding="24dp">
 
             <!-- Password Input -->
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/border"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="12dp" />
+
             <EditText
                 android:id="@+id/passwordInput"
                 android:layout_width="match_parent"

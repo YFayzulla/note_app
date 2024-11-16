@@ -5,20 +5,19 @@ public class Note {
     private String title;
     private String content;
 
-    public Note() {
+    public Note(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 
-    public Note(String title, String content) {
+    public Note(int id, String title, String content) {
+        this.id = id;
         this.title = title;
         this.content = content;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -39,6 +38,6 @@ public class Note {
 
     @Override
     public String toString() {
-        return title; // Display title in ListView
+        return title;
     }
 }
