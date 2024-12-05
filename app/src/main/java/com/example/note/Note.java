@@ -6,6 +6,7 @@ public class Note {
     private String content;
 
     public Note(String title, String content) {
+
         this.title = title;
         this.content = content;
     }
@@ -40,4 +41,5 @@ public class Note {
     public String toString() {
         return title;
     }
+
 }
